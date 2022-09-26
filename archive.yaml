@@ -1,0 +1,17 @@
+---
+ - name: Ansible archive Example
+   hosts: localhost
+   connection: local
+   tasks:
+    - name: Compress Directory contents
+      become: yes
+      archive:
+        path: /etc/ansible/ramm
+        dest: /etc/ansible/ram.tar.gz
+        format: gz
+        group: dev-user
+        owner: dev-user
+    - name: copy file
+      copy:
+        src: /etc/ansible/ram.tar.gz
+        dest: /etc/ansible/ramm
