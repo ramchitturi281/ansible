@@ -1,0 +1,15 @@
+---
+- name: Update resolve.conf
+  hosts: all
+  become: yes
+  tasks:
+    - name: add fallbackdns into file
+      lineinfile:
+       path: /etc/systemd/resolved.conf
+       line: FallbackDNS=168.63.129.16
+
+
+    - name: restart systemd-resolved service
+      service:
+       name: systemd-resolved
+       state: restarted
